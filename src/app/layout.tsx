@@ -1,7 +1,9 @@
+import 'bootstrap/dist/css/bootstrap.css'
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
+import BootstrapClient from './components/bootstrap/bootstrap';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,7 +18,43 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      
+      <body className={inter.className}>
+        {children}
+        <BootstrapClient />
+        
+
+
+        
+      
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/popper.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/modernizr.min.js"></script>
+        <script src="/js/detect.js"></script>
+        <script src="/js/fastclick.js"></script>
+        <script src="/js/jquery.blockUI.js"></script>
+        <script src="/js/waves.js"></script>
+        <script src="/js/jquery.nicescroll.js"></script>
+        <script src="/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
+        <script src="/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+        
+        <script src="/plugins/skycons/skycons.min.js"></script>
+        <script src="/plugins/fullcalendar/vanillaCalendar.js"></script>
+        
+        <script src="/plugins/raphael/raphael-min.js"></script>
+        <script src="/plugins/morris/morris.min.js"></script> 
+         
+        
+
+        
+        <script src="/js/app.js"></script>
+        <script src="/pages/dashborad.js"></script>
+        
+
+
+
+      </body>
     </html>
   );
 }

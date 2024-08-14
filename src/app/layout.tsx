@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import BootstrapClient from './components/bootstrap/bootstrap';
+import SessionWrapper from '../../components/SessionWrapper';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,16 +18,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <SessionWrapper>
     <html lang="en">
       
       <body className={inter.className}>
         {children}
         <BootstrapClient />
-        
-
-
-        
-      
         <script src="/js/jquery.min.js"></script>
         <script src="/js/popper.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
@@ -56,5 +53,6 @@ export default function RootLayout({
 
       </body>
     </html>
+    </SessionWrapper>
   );
 }

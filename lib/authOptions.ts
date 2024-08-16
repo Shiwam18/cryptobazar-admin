@@ -2,6 +2,7 @@ import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import Email from "next-auth/providers/email";
 import { PrismaClient } from '@prisma/client'
+import bcrypt from "bcrypt"
 const prisma = new PrismaClient();
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -11,12 +12,12 @@ export const authOptions: NextAuthOptions = {
                 username: {
                     label: 'username',
                     type: 'text',
-                    placeholder: 'Useranme'
+                    placeholder: 'Username'
                 },
                 password:{
                     label:'Password',
                     type:'password',
-                    placeholder:'Password',
+                    placeholder:'password',
                 }
             },
             authorize: async (credentials): Promise<any> => {
@@ -36,7 +37,10 @@ export const authOptions: NextAuthOptions = {
                 if(!user) {
                     throw new Error("No user found with this email");
                 }
-                if(user && user.password===password){
+                const hashPassword = bcrypt.hash(password, 10);
+
+                const match = bcrypt.compare(password, user.password);
+                if(await match){
                     return user;
                 }
 

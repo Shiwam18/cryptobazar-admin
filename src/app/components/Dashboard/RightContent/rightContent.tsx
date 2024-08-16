@@ -1,6 +1,7 @@
 import Image from "next/image"
 
-export default function RightContent(){
+export default function RightContent({user}:{user:any}){
+  // console.log(user);
     return (
     <div className="content-page">
     {/* Start content */}
@@ -370,7 +371,7 @@ export default function RightContent(){
                         </div>
                         <div className="col-9 text-right align-self-center">
                           <div className="m-l-10 ">
-                            <h5 className="mt-0">562</h5>
+                            <h5 className="mt-0">{user.message.length}</h5>
                             <p className="mb-0 text-muted">New Users</p>
                           </div>
                         </div>
@@ -403,8 +404,8 @@ export default function RightContent(){
                         </div>
                         <div className="col-9 align-self-center text-right">
                           <div className="m-l-10 ">
-                            <h5 className="mt-0">7514</h5>
-                            <p className="mb-0 text-muted">New Orders</p>
+                            <h5 className="mt-0">{user.userData.length}</h5>
+                            <p className="mb-0 text-muted">New forms</p>
                           </div>
                         </div>
                       </div>
@@ -440,20 +441,49 @@ export default function RightContent(){
             <div className="col-xl-6">
               <div className="card">
                 <div className="card-body new-user">
-                  <h5 className="header-title mb-4 mt-0">New Users</h5>
+                  <h5 className="header-title mb-4 mt-0">Users</h5>
                   <div className="table-responsive">
                     <table className="table table-hover mb-0">
                       <thead>
                         <tr>
-                          <th className="border-top-0">Users</th>
+                          <th className="border-top-0">Profile</th>
                           <th className="border-top-0">Name</th>
-                          <th className="border-top-0">Country</th>
-                          <th className="border-top-0">Reviews</th>
-                          <th className="border-top-0">Socials</th>
+                          <th className="border-top-0">Email</th>
+                          <th className="border-top-0">Digigram-Id</th>
+                          {/* <th className="border-top-0">Socials</th> */}
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
+                        
+                        
+                        
+                        {user?.message?.map((data:any, idx:any)=>{
+                          return(
+                            <tr key={idx}>
+                              <td>
+                                <Image
+                                  className="img-fluid rounded-circle"
+                                  src={`${data?.img?data.img:`/images/users/avatar-2.jpg`} `}
+                                  alt="user"
+                                  width={30} height={0}
+                                />{" "}
+                              </td>
+                              <td>
+                                <a href="#">{data?.name}</a>
+                              </td>
+                              <td>
+                                <a href="#">{data?.email}</a>
+                              </td>
+                              <td>
+                                {data?.digiId?data.digiId:"Not generated"}
+                              </td>
+                            </tr>
+                            
+                          )
+                        })}
+
+
+                        {/* <tr>
                           <td>
                             <Image
                               className="img-fluid rounded-circle"
@@ -734,7 +764,7 @@ export default function RightContent(){
                               </li>
                             </ul>
                           </td>
-                        </tr>
+                        </tr> */}
                       </tbody>
                     </table>
                   </div>
@@ -752,179 +782,36 @@ export default function RightContent(){
                     <table className="table table-hover mb-0">
                       <thead>
                         <tr>
-                          <th className="border-top-0">Product</th>
-                          <th className="border-top-0">Pro Name</th>
-                          <th className="border-top-0">Country</th>
-                          <th className="border-top-0">Order Date/Time</th>
-                          <th className="border-top-0">Pcs.</th>
-                          <th className="border-top-0">Amount ($)</th>
+                          <th className="border-top-0">Coin Name</th>
+                          <th className="border-top-0">User listed</th>
+                          
+                          <th className="border-top-0">Coin Url</th>
+                          <th className="border-top-0">Created Date</th>
+                          <th className="border-top-0">Updated Date</th>
                           <th className="border-top-0">Status</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>
-                            <Image
-                              className="img-fluid img-fluid"
-                              src="/images/products/pro1.png"
-                              alt="user"
-                              width={0} height={0}
-                            />{" "}
-                          </td>
-                          <td>Chair</td>
-                          <td>
-                            <Image
-                              src="/images/flags/us_flag.jpg"
-                              alt=""
-                              className="img-fluid img-flag"
-                              width={0} height={0}
-                            />
-                          </td>
-                          <td>3/09/2018 4:29 PM</td>
-                          <td>2</td>
-                          <td> $ 50</td>
-                          <td>
-                            <span className="badge badge-boxed  badge-success">
-                              Shipped
-                            </span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <Image
-                              className="image-fluid"
-                              src="/images/products/pro2.png"
-                              alt="user"
-                              width={0} height={0}
-                            />{" "}
-                          </td>
-                          <td>Mobile</td>
-                          <td>
-                            <Image
-                              src="/images/flags/french_flag.jpg"
-                              alt=""
-                              className="img-fluid img-flag"
-                              width={0} height={0}
-                            />
-                          </td>
-                          <td>3/15/2018 1:09 PM</td>
-                          <td>1</td>
-                          <td> $ 70</td>
-                          <td>
-                            <span className="badge badge-boxed  badge-danger">
-                              Delivered
-                            </span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <Image
-                              className="img-fluid"
-                              src="/images/products/pro3.png"
-                              alt="user"
-                              width={0} height={0}
-                            />{" "}
-                          </td>
-                          <td>LED</td>
-                          <td>
-                            <Image
-                              src="/images/flags/spain_flag.jpg"
-                              alt=""
-                              className="img-fluid img-flag"
-                              width={0} height={0}
-                            />
-                          </td>
-                          <td>3/18/2018 12:09 PM</td>
-                          <td>3</td>
-                          <td> $ 200</td>
-                          <td>
-                            <span className="badge badge-boxed badge-warning">
-                              Pending
-                            </span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <Image
-                              className="img-fluid"
-                              src="/images/products/pro4.png"
-                              alt="user"
-                              width={0} height={0}
 
-                            />{" "}
-                          </td>
-                          <td>Chair</td>
-                          <td>
-                            <Image
-                              src="/images/flags/russia_flag.jpg"
-                              alt=""
-                              className="img-fluid img-flag"
-                              width={0} height={0}
-                            />
-                          </td>
-                          <td>3/27/2018 8:27 PM</td>
-                          <td>2</td>
-                          <td> $ 20</td>
-                          <td>
-                            <span className="badge badge-boxed  badge-success">
-                              Shipped
-                            </span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <Image
-                              className="img-fluid"
-                              src="/images/products/pro2.png"
-                              alt="user"
-                              width={0} height={0}
-                            />{" "}
-                          </td>
-                          <td>Mobile</td>
-                          <td>
-                            <Image
-                              src="/images/flags/italy_flag.jpg"
-                              alt=""
-                              className="img-fluid img-flag"
-                              width={0} height={0}
-                            />
-                          </td>
-                          <td>4/01/2018 5:09 PM</td>
-                          <td>1</td>
-                          <td> $ 150</td>
-                          <td>
-                            <span className="badge badge-boxed badge-warning">
-                              Pending
-                            </span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <Image
-                              className="img-fluid"
-                              src="/images/products/pro1.png"
-                              alt="user"
-                              width={0} height={0}
-                            />{" "}
-                          </td>
-                          <td>Chair</td>
-                          <td>
-                            <Image
-                              src="/images/flags/us_flag.jpg"
-                              alt=""
-                              className="img-fluid img-flag"
-                              width={0} height={0}
-                            />
-                          </td>
-                          <td>3/09/2018 4:29 PM</td>
-                          <td>2</td>
-                          <td> $ 50</td>
-                          <td>
-                            <span className="badge badge-boxed  badge-success">
-                              Shipped
-                            </span>
-                          </td>
-                        </tr>
+                        {
+                          user?.userData?.map((data:any, idx:any)=>{
+                            return(
+                              <tr key={idx}>
+                                <td>{data?.project_name}</td>
+                                <td>{data?.email}</td>
+                                
+                                <td>
+                                  <a href={`${data.website1}`} target="_blank" rel="noopener noreferrer">{data?.website1}</a>
+                                </td>
+                                
+                                <td>{new Date(data?.created_at).toLocaleDateString()}</td>
+                                <td>{new Date(data?.updated_at).toLocaleDateString()}</td>
+                                <td>{data?.status}</td>
+                              </tr>
+                            )
+                          })
+                        }
+
                       </tbody>
                     </table>
                   </div>

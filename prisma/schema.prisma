@@ -13,8 +13,118 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model user{
+model user_admin{
   id           String   @id @default(cuid())
   Username     String   @unique
   password     String
+}
+
+model user {
+  id            Int     @id @default(autoincrement())
+  email         String  @unique
+  password      String
+  name          String
+  image         String? 
+  digiId        String?  @db.VarChar(255) 
+  followers     BigInt   @default(0)
+  following     BigInt   @default(0)
+  created_at    DateTime @default(now())
+  updated_at    DateTime? 
+}
+
+model crypto_tags{
+  id          Int     @id @default(autoincrement())
+  tags        String
+}
+
+model hashing_algorithm{
+  id          Int     @id @default(autoincrement())
+  algoname    String
+}
+
+model platform_contract_address1{
+  id          Int     @id @default(autoincrement())
+  contract_add String
+}
+
+model selected_algos{
+  id          Int     @id @default(autoincrement())
+  form_id     Int
+  algo_id     Int
+}
+
+model selected_tags{
+  id          Int     @id @default(autoincrement())
+  form_id     Int
+  asset_id    Int
+}
+
+enum Status {
+  PENDING
+  ACTIVE
+  INACTIVE
+  DELETED
+
+}
+
+
+model form_addnew_cryptoasset {
+  id                             Int      @id @default(autoincrement())
+  user_id                        String      
+  add_cryptoasset                String?  @db.VarChar(255)
+  email                          String   @db.Text
+  subject_field                  String?  @db.VarChar(255)
+  relationship_with_project      String   @db.VarChar(255)
+  launch_date                    DateTime @db.Date
+  project_name                   String   @db.VarChar(100)
+  project_symbol                 String   @db.VarChar(100)
+  description                    String   @db.VarChar(500)
+  detailed_description           String   @db.VarChar(1000)
+  platform                       String   @db.VarChar(500)
+  chain_fork                     String   @db.VarChar(500)
+  investors                      String   @db.VarChar(500)
+  media_coverage                 String?  @db.VarChar(500)
+  traction                       String   @db.VarChar(1000)
+  country_origin                 String   @db.VarChar(500)
+  logo_link                      String   @db.VarChar(1000)
+  website1                       String   @db.VarChar(1000)
+  website2                       String?  @db.VarChar(1000)
+  annex_a                        String   @db.VarChar(2000)
+  emission                       String?  @db.VarChar(1000)
+  platform_of_contract_address1  String   @db.VarChar(1000)
+  contract_address1              String   @db.VarChar(1000)
+  number_of_decimals             Int?     @db.Int
+  block_explorer                 String?  @db.VarChar(1000)
+  block_explorers                String?  @db.Text
+  source_code                    String?  @db.VarChar(1000)
+  whitepaper                     String?  @db.Text
+  announcement                   String?  @db.Text
+  message_board1                 String?  @db.Text
+  message_boards                 String?  @db.Text
+  twitter                        String   @db.VarChar(255)
+  reddit                         String?  @db.Text
+  facebook                       String?  @db.Text
+  video_channel                  String?  @db.Text
+  chat1                          String   @db.Text
+  chats                          String?  @db.Text
+  linkedin                       String?  @db.Text
+  mobile_app1                    String?  @db.Text
+  mobile_apps                    String?  @db.Text
+  circulating_supply             Int      @db.Int
+  total_supply                   Int?     @db.Int
+  max_supply                     Int      @db.Int
+  ICO_start_date                 DateTime? @db.Date
+  ICO_end_date                   DateTime? @db.Date
+  launch_price                   Int?     @db.Int
+  api_endpoint_ts                String?  @db.Text
+  api_endpoint_cs                String?  @db.Text
+  list_of_cbc                    String?  @db.Text
+  dofollow_linkbacks             String?  @db.VarChar(10)
+  integrate_bot                  String?  @db.VarChar(10)
+  interest_in_cbc_community      String?  @db.VarChar(10)
+  cbc_dexscan_socials            String?  @db.VarChar(10)
+  proofs                         String   @db.Text  
+  status                         String   @default("PENDING")
+  created_at                     DateTime @default(now())
+  updated_at                     DateTime?
 }

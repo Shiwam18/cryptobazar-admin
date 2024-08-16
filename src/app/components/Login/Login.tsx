@@ -1,6 +1,6 @@
 "use client"
 import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useEffect, useState } from "react"
 
 export default function Login(){
@@ -8,9 +8,19 @@ export default function Login(){
     const router= useRouter();
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
       console.log(username, password);
-      signIn();
+      const result =await signIn("credentials",{
+        redirect: false,
+        username,
+        password,
+      });
+      if(result?.error){
+        console.log(result.error);
+      }
+      else{
+        router.push("/dashboard");
+      }
     }
 
     useEffect(()=>{

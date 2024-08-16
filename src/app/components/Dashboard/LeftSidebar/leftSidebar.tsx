@@ -1,5 +1,5 @@
 import Image from "next/image"
-import logoLg from "../../../public/images/logo-lg.png"
+import logoLg from "../../../../../public/images/footer-logo.png"
 import french_logo from "../../../public/images/flags/french_flag.jpg"
 
 export default function LeftSidebar() {
@@ -14,9 +14,9 @@ export default function LeftSidebar() {
         {/* LOGO */}
         <div className="topbar-left">
             <div className="text-center">
-            <a href="index.html" className="logo"><i className="mdi mdi-assistant"></i>Zoter</a>
-            <a href="index.html" className=" img-fluid logo">
-                <Image src={logoLg} width={0} height={18} alt="logo" className="img-fluid logo-large" />
+            
+            <a href="#" className="w-100 img-fluid logo">
+                <Image src={logoLg} width={100} height={40} alt="logo" className="img-fluid logo-large" />
             </a>
             </div>
         </div>
